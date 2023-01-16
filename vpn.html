@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科学上网教程</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#科学上网教程">科学上网教程</a>
+<ul>
+
+<li><a href="#windows">Windows</a></li>
+<li><a href="#android">Android</a></li>
+<li><a href="#iosipados">iOS/iPadOS</a></li>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#macos">MacOS</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="科学上网教程">科学上网教程</h1>
+      <p>本文迁移自华南虎科学上网教程，并已对相关链接作相应修改，请勿转载。</p>
+
+<h2 id="windows">Windows</h2>
+<p>Windows下常用的代理软件有v2rayN、Clash、Qv2ray、Netch等。本人推荐使用Clash，图形化界面在Windows的可使用性比较强。</p>
+<p style='color:red'><b>重要提示：如果你没有关闭代理功能就直接重启或关闭电脑，开机后访问网页将会出现代理服务器有误的报错，此时打开代理软件再退出即可恢复正常。</b></p>
+<h3 id="v2rayn教程">v2rayN教程</h3>
+<p><strong>第一步：安装v2rayN</strong></p>
+<p>准备v2rayN的安装包，文件为zip压缩包</p>
+<p>下载地址：<a href="https://github.com/2dust/v2rayN/releases">Github Release(官方，可能需要VPN)</a>、<a href="https://dl.scutrobot.com/Windows/v2rayN/">华南虎资源站（校园网）</a>、<a href="https://pan.baidu.com/s/1ksAeBc4Da_Vk6l1w-9Ei9g?pwd=dhli">百度网盘</a></p>
+<p><strong>第二步：配置客户端</strong></p>
+<p>解压后进入文件夹，打开 <code>v2rayN.exe</code></p>
+<p><img src="./img/v2rayN_1.png" alt=""></p>
+<p><img src="./img/v2rayN_2.png" alt=""></p>
+<p>点击左上方订阅-&gt;订阅设置，添加一个订阅，备注填入 <code>(自己命名)</code>，地址填入 <code>https://proxy.scutbot.cn/sub/883fdb321a84c05f4171b55d639fdeba</code>，勾选启用选项，点击确定按钮</p>
+<img src="./img/v2rayN_3.png">
+<p>点击左上方订阅-&gt;更新订阅，软件自动下载配置文件</p>
+<img src="./img/v2rayN_4.png">
+<p>更新完成后将出现我们科学上网服务的节点信息，选择需要的节点，点击回车即可设为活动节点</p>
+<p><img src="./img/v2rayN_5.png" alt=""></p>
+<p>在软件任务栏图标上右键，选择系统代理-&gt;自动配置系统代理，软件图标变红即开启成功</p>
+<p><img src="./img/v2rayN_6.png" alt=""></p>
+<img src="./img/v2rayN_7.png">
+<p>至此，v2rayN配置完成，在浏览器中输入 <code>https://google.com</code> 测试是否能访问谷歌搜索，如果成功加载则配置成功。</p>
+<h3 id="clash教程">Clash教程</h3>
+<blockquote>
+<p>Clash目前缺少对VLESS与XTLS的支持，部分线路将无法使用</p>
+</blockquote>
+<p><strong>第一步：安装Clash</strong></p>
+<p>准备Clash的安装包，根据系统位数下载对应exe文件（ia32为32位安装包）</p>
+<p>下载地址：<a href="https://github.com/Fndroid/clash_for_windows_pkg/releases">Github Release</a>、<a href="https://dl.scutrobot.com/Windows/Clash/">华南虎资源站</a>、<a href="https://pan.baidu.com/s/1jmETiV2cldZ8SnaWZ-ibRA?pwd=5fqb">百度网盘</a></p>
+<p><strong>第二步：配置客户端</strong></p>
+<p>安装完成以后打开，主页设置可按如下修改，倒数第二项的 <code>System Proxy</code> 先别打开</p>
+<p><img src="./img/cfw_1.png" alt=""></p>
+<p>选择左侧的Profiles选项，点击右边的 <code>×</code>，删除自带的测试文件 <code>config.yaml</code></p>
+<p><img src="./img/cfw_2.png" alt=""></p>
+<p>在上方文本框填入 <code>https://api.sub-100.one/link/6iWOKtRVCKcoyzPV?clash=3&extend=1</code>，然后点击右边的Download按钮下载配置文件</p>
+<p><img src="./img/cfw_3.png" alt=""></p>
+<p>点击右边的设置按钮修改配置名称，自动更新时间按需设置</p>
+<p><img src="./img/cfw_4.png" alt=""></p>
+<p><img src="./img/cfw_5.png" alt=""></p>
+<p>选择左侧的Proxies选项，上方选择Rule模式并选择节点，同时按需调整各服务分流配置</p>
+<p><img src="./img/cfw_6.png" alt=""></p>
+<p>回到General选项，打开System Proxy开关</p>
+<p><img src="./img/cfw_7.png" alt=""></p>
+<p>至此，Clash配置完成，在浏览器中输入 <code>https://google.com</code> 测试是否能访问谷歌搜索，如果成功加载则配置成功。</p>
+<h2 id="android">Android</h2>
+<h3 id="v2rayng教程">v2rayNG教程</h3>
+<p><strong>第一步：安装v2rayNG</strong></p>
+<p>准备v2rayNG的APK安装包，选择对应设备SOC架构的版本（正常手机选择arm64-v8a版本即可）</p>
+<p>下载地址：<a href="https://github.com/2dust/v2rayNG/releases">Github Release</a>、<a href="https://dl.scutrobot.com/Android/v2rayNG/">华南虎资源站</a>、<a href="https://pan.baidu.com/s/1ExvSorp2teIwkEnnCpx91A?pwd=q2xe">百度网盘</a></p>
+<p>如果你的手机带有Play Store，同时也能正常访问谷歌服务，也可以在<a href="https://play.google.com/store/apps/details?id=com.v2ray.ang">这里</a>直接安装，注意谷歌商店的版本会更新滞后。</p>
+<p><strong>第二步：配置客户端</strong></p>
+<p>安装完成后打开，点击左上角打开侧面板-&gt;订阅设置</p>
+<img src="./img/v2rayNG_1.jpg" style="zoom: 25%;">
+<img src="./img/v2rayNG_2.jpg" style="zoom: 25%;">
+<p>点击右上角的加号,填入配置信息，备注填入 <code>自己命名</code>，地址填入 <code>https://proxy.scutbot.cn/sub</code>，勾选启用选项，点击右上角确认</p>
+<img src="./img/v2rayNG_3.jpg" style="zoom: 25%;">
+<img src="./img/v2rayNG_4.jpg" style="zoom: 25%;">
+<p>回到主页，点击右上角的更新订阅</p>
+<img src="./img/v2rayNG_5.jpg" style="zoom: 25%;">
+<img src="./img/v2rayNG_6.jpg" style="zoom: 25%;">
+<p>选择合适的节点，点击右下角的V按钮开启服务</p>
+<img src="./img/v2rayNG_7.jpg" style="zoom: 25%;">
+<p>至此，v2rayNG配置完成，在浏览器中输入 <code>https://google.com</code> 测试是否能访问谷歌搜索，如果成功加载则配置成功。</p>
+<h3 id="clash教程-1">Clash教程</h3>
+<blockquote>
+<p>Clash目前缺少对VLESS与XTLS的支持，部分线路将无法使用</p>
+</blockquote>
+<p><strong>第一步：安装Clash</strong></p>
+<p>准备Clash For Android的APK安装包，选择对应设备SOC架构的版本（正常手机选择universal版本即可）</p>
+<p>下载地址：<a href="https://github.com/Kr328/ClashForAndroid/releases">Github Release</a>、<a href="https://dl.scutrobot.com/Android/ClashForAndroid/">华南虎资源站</a>、<a href="https://pan.baidu.com/s/1Tx_OrYvXwbaPfazdgIPUBA?pwd=gf8t">百度网盘</a> </p>
+<p>如果你的手机带有Play Store，同时也能正常访问谷歌服务，也可以在<a href="https://play.google.com/store/apps/details?id=com.github.kr328.clash">这里</a>直接安装，注意谷歌商店的版本会更新滞后。</p>
+<p><strong>第二步：配置客户端</strong></p>
+<p>安装完成以后打开</p>
+<img src="./img/CFA_1.jpg" style="zoom: 25%;">
+<p>在软件中点击配置按钮并选择新配置，选择从URL导入，其中名称填入 <code>自己命名</code>，URL填入 <code>https://api.sub-100.one/link/6iWOKtRVCKcoyzPV?clash=4&extend=1</code>，自动更新按需填写，然后点击右上角保存</p>
+<img src="./img/CFA_2.jpg" style="zoom: 25%;">
+<img src="./img/CFA_3.jpg" style="zoom: 25%;">
+<p>返回主页，点击上方已停止按钮开启服务</p>
+<img src="./img/CFA_4.jpg" style="zoom: 25%;">
+<img src="./img/CFA_5.jpg" style="zoom: 25%;">
+<p>点击代理按钮，在其中可以选择不同的节点，同时可以可用配置各种服务的分流</p>
+<img src="./img/CFA_6.jpg" style="zoom: 25%;">
+<p>至此，Clash For Android配置完成，在浏览器中输入 <code>https://google.com</code> 测试是否能访问谷歌搜索，如果成功加载则配置成功。</p>
+<h2 id="iosipados">iOS/iPadOS</h2>
+<h3 id="shadowrocket教程">Shadowrocket教程</h3>
+<p><strong>第一步：安装Shadowrocket</strong></p>
+<p>由于App Store中国大陆区的Shadowrocket（小火箭）已经被下架，目前只能在外区才能下载到这个app，一般情况下会选择美区账号下载。</p>
+<blockquote>
+<p>注意，如果你在国区App Store直接搜索Shadowrocket，将会有一个同名同图标的钓鱼软件，切勿下载使用</p>
+</blockquote>
+<p>我们的目标就是安装上一个能用的小火箭应用，其基础就是获取到一个购买过小火箭的Apple账号，一般有如下方法</p>
+<ol>
+<li>
+<p>淘宝或闲鱼，你在上面可以找到这种共享账号，按照它提供的方式下载安装即可，缺点是更新时需要重新登录对方的ID才能下载。</p>
+</li>
+<li>
+<p>自己注册美区ID并购买，你需要先退出本机Apple ID，修改本机语言为英文，本机位置为美国，正常情况下建议挂上美国的梯子。在登录Apple ID的界面选择注册新的iCloud邮箱，按说明操作即可得到一个美区ID，接着打开APP Store，搜索Shadowrocket，安装时会要求你填写付款资料，如果你有国外信用卡（国内visa或者万事达卡不可用）或者美区Paypal的话可以按情况填写，如果没有的话这里选择跳过，然后到淘宝购买美区APP Store兑换码，充值以后即可购买。</p>
+</li>
+<p style="color:red">此处提供一个美区共享账号，由梯子提供方提供，切勿长时间登录此账号，特别地不能使用该账号登录icloud！！，以免导致手机被锁，账户名：l-efy4j.4@protonmail.com 密码：HDrj044932</p>
+</li>
+</ol>
+<p><strong>第二步：配置小火箭</strong></p>
+<p>打开Shadowrocket</p>
+<img src="./img/rocket_1.png" style="zoom: 25%;">
+<p>点击软件右上角的加号，类型修改为Subscribe，URL填入<code>https://api.sub-100.one/link/6iWOKtRVCKcoyzPV?shadowrocket=1&extend=1</code>，而后点击右上角完成按钮。</p><p>如何自动更新？：在首页找到名称为iKuuu VPN的服务器订阅，点击右边的ⓘ，点击右上角完成。我们建议打开自动更新开关，点击底部导航栏的「设置」进入设置页面，随后往下划至最底部，进入「服务器订阅」子页面。将「打开时更新」的开关打开。</p>
+<img src="./img/rocket_2.png" style="zoom: 25%;">
+<img src="./img/rocket_3.png" style="zoom: 25%;">
+<h2 id="linux">Linux</h2>
+<h3 id="qv2ray教程">Qv2ray教程</h3>
+<p><strong>第一步：安装Qv2ray</strong></p>
+<p>准备Qv2ray的安装包，文件为AppImage格式，同时下载Xray内核文件</p>
+<p>下载地址：<a href="https://github.com/Qv2ray/Qv2ray/releases">Github Release(Qv2ray)</a>、<a href="https://github.com/XTLS/Xray-core/releases">Github Release(Xray_core)</a>、<a href="https://dl.scutrobot.com/Linux/Qv2ray/">华南虎资源站</a>、<a href="https://pan.baidu.com/s/1LfLSQapLc5eSmQXhLntORA?pwd=if54">百度网盘</a></p>
+<p>这里以Ubuntu举例，各发行版操作大致相同，不过部分桌面环境可能无法自动开启系统代理，需要在浏览器手动配置，目前测试GNOME与KDE均可正常工作。</p>
+<p><strong>第二步：配置客户端</strong></p>
+<img src="./img/Qv2ray_1.png">
+<p>右键Qv2ray程序，选择属性，勾选 <code>Allow executing file as program</code> ，或者使用 <code>chmod</code> 为该文件加上运行属性。</p>
+<img src="./img/Qv2ray_2.png">
+<p>双击Qv2ray程序，可打开主界面</p>
+<p><img src="./img/Qv2ray_3.png" alt=""></p>
+<p>打开命令行，解压Xray内核到 <code>~/.config/qv2ray/xray-core/</code> 文件夹下</p>
+<pre><code># 如果系统未安装zip与unzip功能，请先执行以下命令
+shell&gt; sudo apt install zip unzip
+···
+shell&gt; unzip -d ~/.config/qv2ray/xray-core Xray-linux-64.zip
+···
+</code></pre>
+<img src="./img/Qv2ray_4.png">
+<p>点击左上方Preferences-&gt;Kernel Settings，内核路径修改为 <code>/home/dnomd343/.config/qv2ray/xray-core/xray</code>，资源路径修改为 <code>/home/dnomd343/.config/qv2ray/xray-core/</code>，注意用户名改为自己账户名，然后点击 <code>Check V2ray Core Settings</code> 检查内核是否正常，如果与图中类似即安装成功，再点击右下角OK按钮退出设置界面</p>
+<p><img src="./img/Qv2ray_5.png" alt=""></p>
+<p>点击左上方Groups-&gt;Subscription Settings，填入组名为 <code>（个人喜好命名）</code>，勾选 <code>This group is a subscription</code>，地址填入 <code>https://api.sub-100.one/link/6iWOKtRVCKcoyzPV?clash=3&extend=1</code> ，点击下方 <code>Update Subscription</code>，在确认窗口点击Yes更新订阅</p>
+<p><img src="./img/Qv2ray_6.png" alt=""></p>
+<p>进入 <code>Connections</code> 选项卡可看到订阅的线路信息</p>
+<p><img src="./img/Qv2ray_7.png" alt=""></p>
+<p>回到主页，双击 <code>你的命名</code> 展开该组，选择需要的线路双击即可选中并连接</p>
+<p><img src="./img/Qv2ray_8.png" alt=""></p>
+<p>至此，Qv2ray配置完成，在浏览器中输入 <code>https://google.com</code> 测试是否能访问谷歌搜索，如果成功加载则配置成功。</p>
+<h2 id="macos">MacOS</h2>
+<p>如果你是使用M1芯片的设备，则可使用移动端的Shadowrocket，使用方式与上文iOS/iPadOS下配置基本一致，其体验较下文两款软件更佳。</p>
+<h3 id="qv2ray教程-1">Qv2ray教程</h3>
+<p><strong>第一步：安装Qv2ray</strong></p>
+<p>准备Qv2ray的安装包，文件为dmg格式</p>
+<p>下载地址：<a href="https://github.com/Qv2ray/Qv2ray/releases">Github Release</a>、<a href="https://dl.scutrobot.com/MacOS/Qv2ray/">华南虎资源站</a>、<a href="https://pan.baidu.com/s/1ASUN617MyaRKClqObRvkAg?pwd=285v">百度网盘</a></p>
+<p>其余过程与Linux基本一致，此处不做详细教程。</p>
+<h3 id="clashx教程">ClashX教程</h3>
+<p><strong>第一步：安装ClashX</strong></p>
+<p>准备ClashX的安装包，文件为dmg格式</p>
+<p>下载地址：<a href="https://github.com/yichengchen/clashX/releases">Github Release</a>、<a href="https://dl.scutrobot.com/MacOS/ClashX/">华南虎资源站</a>、<a href="https://pan.baidu.com/s/1ZmaD9rXHJ1Y43Uf11JYvEA?pwd=b0ld">百度网盘</a></p>
+<p>待补充…</p>
+
+
+    </div>
+  </div>
+</body>
+
+</html>
