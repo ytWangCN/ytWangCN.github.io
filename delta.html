@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hex-like Grid Toggle (GitHub Pages)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; margin: 24px; }
+    h1 { font-size: 18px; margin: 0 0 12px; }
+    .toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    button { padding: 8px 12px; border-radius: 10px; border: 1px solid #ddd; cursor: pointer; }
+    button:hover { background: #f3f3f3; }
+    #wrap { border: 1px solid #eee; padding: 12px; border-radius: 12px; display: inline-block; }
+    .cell { stroke: seagreen; stroke-width: 2; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>可点击网格（GitHub Pages 版）</h1>
+  <div class="toolbar">
+    <button id="resetBtn">全部设为绿色</button>
+    <button id="exportBtn">导出状态(JSON)</button>
+    <span>行配置：<code id="rowsText"></code></span>
+  </div>
+
+  <div id="wrap">
+    <svg id="grid" width="480" height="480" viewBox="-0.5 -0.5 8.5 7.5" preserveAspectRatio="xMidYMid meet" />
+  </div>
+
+  <script>
+    // === 1) 网格参数（和你Python里一致） ===
+    const rowCounts = [3, 5, 7, 7, 5, 3];      // 每行格子数
+    const cellSize  = 1.0;                     // 每格宽/高
+    const pad       = 0;                        // 额外留白（视口已经给了0.5边距）
+    const maxCount  = Math.max(...rowCounts);   // 用来居中每行
+
+    // === 2) 初始化 SVG ===
+    const svg = document.getElementById('grid');
+    document.getElementById('rowsText').textContent = JSON.stringify(rowCounts);
+
+    // 存状态: {key: "r-c", val: true=绿 / false=红}
+    const state = {};
+
+    function keyOf(r, c){ return `${r}-${c}`; }
+
+    // === 3) 生成格子 ===
+    // 与Python一致：y从上到下递减（上面的行 y 更大）
+    for (let r = 0; r < rowCounts.length; r++) {
+      const cnt = rowCounts[r];
+      const xOffset = (maxCount - cnt) / 2.0;
+      const y = (rowCounts.length - 1 - r); // 顶部y大
+      for (let c = 0; c < cnt; c++) {
+        const x = xOffset + c;
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("x", x);
+        rect.setAttribute("y", y);
+        rect.setAttribute("width", cellSize);
+        rect.setAttribute("height", cellSize);
+        rect.setAttribute("rx", 0.1); // 微圆角，好看一点
+        rect.classList.add("cell");
+
+        // 初始绿色
+        rect.setAttribute("fill", "lightgreen");
+        rect.setAttribute("fill-opacity", "0.9");
+        state[keyOf(r,c)] = true;
+
+        // 点击切换
+        rect.addEventListener("click", () => {
+          const k = keyOf(r,c);
+          const isGreen = !!state[k];
+          if (isGreen) {
+            rect.setAttribute("fill", "red");
+            state[k] = false;
+          } else {
+            rect.setAttribute("fill", "lightgreen");
+            state[k] = true;
+          }
+        });
+
+        svg.appendChild(rect);
+      }
+    }
+
+    // === 4) 工具栏功能 ===
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      // 全部设为绿色
+      Array.from(svg.querySelectorAll('.cell')).forEach((rect, i) => {
+        rect.setAttribute("fill", "lightgreen");
+      });
+      for (let r = 0; r < rowCounts.length; r++) {
+        for (let c = 0; c < rowCounts[r]; c++) {
+          state[keyOf(r,c)] = true;
+        }
+      }
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      // 导出为 {rows:[...], state:[[true,false,...], ...]}
+      const out = { rows: rowCounts.slice(), state: [] };
+      for (let r = 0; r < rowCounts.length; r++) {
+        const row = [];
+        for (let c = 0; c < rowCounts[r]; c++) {
+          row.push(!!state[keyOf(r,c)]);
+        }
+        out.state.push(row);
+      }
+      const blob = new Blob([JSON.stringify(out, null, 2)], {type: "application/json"});
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      a.download = 'grid_state.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
