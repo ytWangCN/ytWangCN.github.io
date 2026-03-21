@@ -15,6 +15,9 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="#" class="nav-logo">Yitong Wang</a>
+      <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -49,6 +52,8 @@
     </div>
   </section>
 
+  <main>
+
   <!-- About Section -->
   <section id="about" class="section">
     <h2 class="section-title">About Me</h2>
@@ -58,7 +63,7 @@
         supervised by <a href="https://yanggao.people.ust.hk/index.html" target="_blank">Prof. Yang Gao</a> and affiliated with the 
         <a href="https://yanggao.people.ust.hk/CAIRSS.html" target="_blank">Centre for AI Robotics in Space Sustainability</a>.
       </p>
-      <p style="margin-top: 1rem;">
+      <p>
         Previously, I completed my MRes in Healthcare Technologies at 
         King's College London, supervised by <a href="https://profiles.ucl.ac.uk/60656-erika-molteni/about" target="_blank">Dr. Erika Molteni</a>, 
         <a href="https://www.kcl.ac.uk/people/michela-antonelli" target="_blank">Dr. Michela Antonelli</a> and 
@@ -68,11 +73,9 @@
         and Control Engineering with a minor in Computer Science, supervised by 
         <a href="https://www2.scut.edu.cn/ft_en/2025/1021/c45325a606216/page.htm" target="_blank">Prof. Dong Zhang</a>.
       </p>
-      <p style="margin-top: 1rem; font-style: italic; color: var(--text-light);">
-        Beyond robotics, I am also a photography enthusiast and home cook. 
-        <a href="./photograph/index.html" style="color: inherit; text-decoration: none; border-bottom: 1px dotted var(--text-light);">
-          Click here
-        </a> 
+      <p class="bio-photo-note">
+        Beyond robotics, I am also a photography enthusiast and home cook.
+        <a href="./photograph/index.html">Click here</a>
         to view some of my photography work.
       </p>
       <div class="research-interests">
@@ -173,7 +176,7 @@
     <div class="experience-list">
       
       <div class="experience-item">
-        <div class="experience-logo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">HKUST</div>
+        <div class="experience-logo experience-logo-abbr">HKUST</div>
         <div class="experience-content">
           <h3>The Hong Kong University of Science and Technology</h3>
           <p>PhD in Mechanical Engineering</p>
@@ -183,7 +186,7 @@
       </div>
 
       <div class="experience-item">
-        <div class="experience-logo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">KCL</div>
+        <div class="experience-logo experience-logo-abbr">KCL</div>
         <div class="experience-content">
           <h3>King's College London</h3>
           <p>MRes in Healthcare Technologies (GPA: 72/100, Distinction)</p>
@@ -213,7 +216,7 @@
       </div>
 
       <div class="experience-item">
-        <div class="experience-logo" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.7rem;">SCUT</div>
+        <div class="experience-logo experience-logo-abbr">SCUT</div>
         <div class="experience-content">
           <h3>South China University of Technology</h3>
           <p>BEng in Process Equipment and Control Engineering (GPA: 3.15/4)</p>
@@ -317,11 +320,29 @@
     </div>
   </section>
 
+  </main>
+
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2024 Yitong Wang. All rights reserved.</p>
+    <p>&copy; 2026 Yitong Wang. All rights reserved.</p>
     <p style="margin-top: 0.5rem;">Last updated: March 2026</p>
   </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    // Close nav when a link is clicked (single-page navigation)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 
 </body>
 </html>
