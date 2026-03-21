@@ -33,6 +33,7 @@
 
   <!-- Hero Section -->
   <section class="hero">
+    <canvas id="particle-canvas"></canvas>
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-eyebrow">
@@ -82,12 +83,41 @@
         <a href="./photograph/index.html">Click here</a>
         to view some of my photography work.
       </p>
-      <div class="research-interests">
-        <span class="interest-tag">Robot Learning</span>
-        <span class="interest-tag">Reinforcement Learning</span>
-        <span class="interest-tag">Space/Surgical Robotics</span>
-        <span class="interest-tag">Embodied AI and World Model</span>
-        <span class="interest-tag">Human-Robot Interaction</span>
+      <div class="research-track-wrapper">
+        <div class="research-track">
+          <span class="track-item">Robot Learning</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Reinforcement Learning</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Space Robotics</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Surgical Robotics</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Embodied AI</span>
+          <span class="track-dot"></span>
+          <span class="track-item">World Model</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Human-Robot Interaction</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Autonomous Navigation</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Medical Imaging</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Deep Learning</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Robot Learning</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Reinforcement Learning</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Space Robotics</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Surgical Robotics</span>
+          <span class="track-dot"></span>
+          <span class="track-item">Embodied AI</span>
+          <span class="track-dot"></span>
+          <span class="track-item">World Model</span>
+          <span class="track-dot"></span>
+        </div>
       </div>
     </div>
   </section>
@@ -333,6 +363,103 @@
   </footer>
 
   <script>
+    // ── Particle Background ──────────────────────────────────
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouseX = 0, mouseY = 0;
+    const PARTICLE_COUNT = 80;
+    const CONNECTION_DISTANCE = 120;
+    const MOUSE_RADIUS = 150;
+
+    function resizeCanvas() {
+      const hero = document.querySelector('.hero');
+      canvas.width = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 1.5 + 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+        const dx = mouseX - this.x;
+        const dy = mouseY - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MOUSE_RADIUS) {
+          this.x -= dx * 0.02;
+          this.y -= dy * 0.02;
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(88, 166, 255, ${this.opacity})`;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function drawConnections() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECTION_DISTANCE) {
+            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.3;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(88, 166, 255, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      drawConnections();
+      requestAnimationFrame(animateParticles);
+    }
+
+    resizeCanvas();
+    initParticles();
+    animateParticles();
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
+    });
+    document.querySelector('.hero').addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+
     // ── Hamburger menu ───────────────────────────────────────
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
