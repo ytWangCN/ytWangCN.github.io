@@ -35,6 +35,10 @@
   <section class="hero">
     <div class="hero-container">
       <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-fixed">PhD_Researcher</span>
+          <span class="eyebrow-sep"> // </span><span class="eyebrow-dynamic">Robot_Learning</span>
+        </div>
         <h1>Yitong Wang</h1>
         <h2>PhD Student in Mechanical Engineering</h2>
         <p><i class="fas fa-building"></i> Centre for AI Robotics in Space Sustainability</p>
@@ -102,7 +106,7 @@
           Article expected to be published in 2025.</p>
           <div class="project-links">
             <a href="./thrombusrobot.pdf"><i class="fas fa-file-pdf"></i> Paper</a>
-            <span style="color: var(--accent);"><i class="fas fa-clock"></i> Publication in Preparation</span>
+            <span style="color: var(--accent-green);"><i class="fas fa-clock"></i> Publication in Preparation</span>
           </div>
         </div>
       </div>
@@ -114,7 +118,7 @@
           <p>Developed Transformer-based models for mental stress and loneliness detection with variable modal signal inputs. 
           Explored modality loss effects and robustness enhancement methods.</p>
           <div class="project-links">
-            <span style="color: var(--primary);"><i class="fas fa-microscope"></i> MRes Research</span>
+            <span style="color: var(--accent);"><i class="fas fa-microscope"></i> MRes Thesis</span>
           </div>
         </div>
       </div>
@@ -137,7 +141,7 @@
           <p>3rd Prize at ICRA AI Challenge. Implemented YOLO V4 localization, A3C decision-making, Cartographer/AMCL navigation, and gimbal auto-targeting with 90%+ accuracy.</p>
           <div class="project-links">
             <a href="https://github.com/ytWangCN/Robo_ICRA"><i class="fab fa-github"></i> Code</a>
-            <span style="color: var(--accent);"><i class="fas fa-trophy"></i> 3rd Prize</span>
+            <span style="color: var(--accent-green);"><i class="fas fa-trophy"></i> 3rd Prize</span>
           </div>
         </div>
       </div>
@@ -149,7 +153,7 @@
           <p>Dynamic analysis and biomimetic optimization using Fusion360. Reduced weight by 30% while maintaining mechanical strength. RoboCon 2021 Simulation Competition.</p>
           <div class="project-links">
             <a href="https://git.scutbot.cn/Project/21_Project_UniPower_MITCheetah"><i class="fab fa-github"></i> Code</a>
-            <span style="color: var(--accent);"><i class="fas fa-trophy"></i> 1st Prize</span>
+            <span style="color: var(--accent-green);"><i class="fas fa-trophy"></i> 1st Prize</span>
           </div>
         </div>
       </div>
@@ -329,19 +333,123 @@
   </footer>
 
   <script>
+    // ── Hamburger menu ───────────────────────────────────────
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     hamburger.addEventListener('click', () => {
       const open = navLinks.classList.toggle('open');
       hamburger.setAttribute('aria-expanded', open);
     });
-    // Close nav when a link is clicked (single-page navigation)
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
       });
     });
+
+    // ── Eyebrow cycling terms ────────────────────────────────
+    const eyebrowTerms = [
+      'Robot_Learning',
+      'Space_Robotics',
+      'Reinforcement_Learning',
+      'Surgical_Robotics',
+      'Embodied_AI',
+      'World_Model',
+      'Human_Robot_Interaction',
+      'Autonomous_Navigation',
+      'Medical_Imaging',
+    ];
+
+    // PyCharm dark theme accent colors
+    const eyebrowColors = ['#3fb950', '#ce9178', '#c586c0'];
+
+    const dynamicEl = document.querySelector('.eyebrow-dynamic');
+    let termIndex = 0;
+    let colorIndex = 0;
+
+    function nextTerm() {
+      dynamicEl.classList.add('fade-out');
+      setTimeout(() => {
+        termIndex = (termIndex + 1) % eyebrowTerms.length;
+        // Advance color every 3 terms so it doesn't flicker too fast
+        if (termIndex % 3 === 0) colorIndex = (colorIndex + 1) % eyebrowColors.length;
+        dynamicEl.textContent = eyebrowTerms[termIndex];
+        dynamicEl.style.color = eyebrowColors[colorIndex];
+        dynamicEl.classList.remove('fade-out');
+      }, 380);
+    }
+
+    // Set initial color and start cycling every 2.5s
+    dynamicEl.style.color = eyebrowColors[0];
+    setInterval(nextTerm, 2500);
+
+    // ── Name scramble animation ──────────────────────────────
+    class TextScramble {
+      constructor(el) {
+        this.el = el;
+        // ASCII + punctuation chars used for the scramble effect
+        this.chars = '!<>-_\\/[]{}=+*^?#@$%&0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        this.update = this.update.bind(this);
+      }
+
+      setText(newText) {
+        const length = newText.length;
+        this.resolve = null;
+        const promise = new Promise(r => this.resolve = r);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+          const to = newText[i];
+          // Wider stagger so characters lock in one by one at a visible pace
+          const start = Math.floor(i * 6);
+          const end   = start + Math.floor(Math.random() * 16) + 20;
+          this.queue.push({ to, start, end, char: '' });
+        }
+        clearTimeout(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+
+      update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0; i < this.queue.length; i++) {
+          const item = this.queue[i];
+          if (this.frame >= item.end) {
+            complete++;
+            output += item.to === ' ' ? ' ' : item.to;
+          } else if (this.frame >= item.start) {
+            if (!item.char || Math.random() < 0.35) {
+              item.char = item.to === ' ' ? ' ' : this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+            output += item.to === ' '
+              ? ' '
+              : `<span class="scramble-char">${item.char}</span>`;
+          } else {
+            output += '<span class="scramble-char">_</span>';
+          }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) {
+          this.resolve();
+        } else {
+          // ~50ms per frame → total ~3s for full name to resolve
+          this.frameRequest = setTimeout(this.update, 50);
+          this.frame++;
+        }
+      }
+    }
+
+    const nameEl = document.querySelector('.hero-content h1');
+    const fx = new TextScramble(nameEl);
+
+    // Loop: scramble → pause → scramble → ...
+    function loop() {
+      fx.setText('Yitong Wang').then(() => {
+        setTimeout(loop, 3000); // pause 3s before next scramble
+      });
+    }
+    setTimeout(loop, 500);
   </script>
 
 </body>
