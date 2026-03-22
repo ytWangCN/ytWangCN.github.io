@@ -682,8 +682,10 @@ body {
 .experience-logo[src="hkust.svg"] { filter: grayscale(20%) brightness(1.9); }
 .experience-item:hover .experience-logo[src="hkust.svg"] { filter: grayscale(0%) brightness(2.1); }
 
-.experience-logo[src="scut.png"] { filter: grayscale(20%) brightness(1.1); }
-.experience-item:hover .experience-logo[src="scut.png"] { filter: grayscale(0%) brightness(1.3); }
+.experience-logo[src="scut.png"],
+.experience-logo[src="kcl.webp"] { filter: grayscale(20%) brightness(1.2); }
+.experience-item:hover .experience-logo[src="scut.png"],
+.experience-item:hover .experience-logo[src="kcl.webp"] { filter: grayscale(0%) brightness(1.4); }
 
 .experience-content h3 {
   font-size: 0.975rem;
