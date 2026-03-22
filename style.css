@@ -34,6 +34,19 @@ html {
   color: var(--text);
 }
 
+/* ─── Global cursor glow ─────────────────────────────────── */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    650px circle at var(--mx, -9999px) var(--my, -9999px),
+    rgba(88, 166, 255, 0.055),
+    transparent 70%
+  );
+}
+
 /* ─── Skip link (keyboard accessibility) ────────────────── */
 .skip-link {
   position: absolute;

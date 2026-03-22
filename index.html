@@ -56,6 +56,7 @@
 </head>
 <body>
 
+  <div class="cursor-glow" aria-hidden="true"></div>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- Navigation -->
@@ -625,6 +626,13 @@
         }
       }
     }
+
+    // ── Global cursor glow ───────────────────────────────────
+    const cursorGlow = document.querySelector('.cursor-glow');
+    document.addEventListener('mousemove', e => {
+      cursorGlow.style.setProperty('--mx', e.clientX + 'px');
+      cursorGlow.style.setProperty('--my', e.clientY + 'px');
+    }, { passive: true });
 
     // ── Mouse spotlight on hero ──────────────────────────────
     const heroEl = document.querySelector('.hero');
